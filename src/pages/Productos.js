@@ -12,161 +12,14 @@ import {
 } from "react-bootstrap";
 
 export default function Productos() {
-  // ----- DATA BASE de productos -----
-  const productosBase = [
-    {
-      nombre: "PlayStation 5",
-      precio: 650000,
-      categoria: "consolas",
-      img: "images/ps5.jpg",
-      descripcion: "La nueva generación de consolas PlayStation.",
-      descripcionLarga:
-        "La consola de última generación de Sony, que ofrece gráficos impresionantes y tiempos de carga ultrarrápidos para una experiencia de juego inmersiva.",
-      reseñas: [
-        { texto: "¡Increíble potencia!", estrellas: 5 },
-        { texto: "La mejor consola de Sony.", estrellas: 5 },
-      ],
-    },
-    {
-      nombre: "Asus ROG Strix",
-      precio: 1200000,
-      categoria: "computadores-gamers",
-      img: "images/asus-rog-strix.jpg",
-      descripcion: "Notebook gamer de alto rendimiento.",
-      descripcionLarga:
-        "PC Gamer ASUS ROG Strix: un potente equipo diseñado para los gamers más exigentes, equipado con los últimos componentes para ofrecer un rendimiento excepcional en cualquier juego.",
-      reseñas: [
-        { texto: "Perfecto para gaming y trabajo.", estrellas: 5 },
-        { texto: "Excelente calidad de construcción.", estrellas: 4 },
-      ],
-    },
-    {
-      nombre: "Carcassonne",
-      precio: 25000,
-      categoria: "juegos-de-mesa",
-      img: "images/carcassonne.png",
-      descripcion: "Juego de mesa de estrategia y ciudades.",
-      descripcionLarga:
-        "Un juego de colocación de fichas donde los jugadores construyen el paisaje alrededor de la fortaleza medieval de Carcassonne. Ideal para 2-5 jugadores y fácil de aprender.",
-      reseñas: [
-        {
-          texto: "Muy entretenido para toda la familia.",
-          estrellas: 5,
-        },
-        { texto: "Fácil de aprender.", estrellas: 4 },
-      ],
-    },
-    {
-      nombre: "Catan",
-      precio: 35000,
-      categoria: "juegos-de-mesa",
-      img: "images/catan.png",
-      descripcion: "El clásico de estrategia y comercio.",
-      descripcionLarga:
-        "Un clásico juego de estrategia donde los jugadores compiten por colonizar y expandirse en la isla de Catan. Ideal para 3-4 jugadores y perfecto para noches de juego en familia o con amigos.",
-      reseñas: [
-        { texto: "Ideal para jugar con amigos.", estrellas: 5 },
-        { texto: "Nunca aburre.", estrellas: 4 },
-      ],
-    },
-    {
-      nombre: "HyperX Cloud II",
-      precio: 69000,
-      categoria: "accesorios",
-      img: "images/hyperx-cloud2.jpg",
-      descripcion: "Auriculares gamer con gran sonido.",
-      descripcionLarga:
-        "Auriculares Gamer HyperX Cloud II: proporcionan un sonido envolvente de calidad con un micrófono desmontable y almohadillas de espuma viscoelástica para mayor comodidad durante largas sesiones de juego.",
-      reseñas: [
-        { texto: "Sonido espectacular.", estrellas: 5 },
-        {
-          texto: "Muy cómodos para largas sesiones.",
-          estrellas: 5,
-        },
-      ],
-    },
-    {
-      nombre: "Logitech G502",
-      precio: 45000,
-      categoria: "mouse",
-      img: "images/logitech-g502.jpg",
-      descripcion: "Mouse gamer de alta precisión.",
-      descripcionLarga:
-        "Mouse Gamer Logitech G502 HERO: con sensor de alta precisión y botones personalizables, este mouse es ideal para gamers que buscan un control preciso y personalización.",
-      reseñas: [
-        { texto: "Muy cómodo.", estrellas: 5 },
-        { texto: "Excelente para shooters.", estrellas: 4 },
-      ],
-    },
-    {
-      nombre: "Polera Personalizada",
-      precio: 18000,
-      categoria: "poleras-personalizadas",
-      img: "images/polera-personalizada.png",
-      descripcion: "Personaliza tu polera con tu tag.",
-      descripcionLarga:
-        "Polera Gamer Personalizada 'Level-Up': una camiseta cómoda y estilizada, con la posibilidad de personalizarla con tu gamer tag o diseño favorito.",
-      reseñas: [
-        { texto: "¡Me encantó el diseño!", estrellas: 5 },
-        { texto: "Buena calidad.", estrellas: 4 },
-      ],
-    },
-    {
-      nombre: "Razer Goliathus",
-      precio: 22000,
-      categoria: "mousepad",
-      img: "images/razer-goliathus.jpg",
-      descripcion: "Mousepad amplio para precisión.",
-      descripcionLarga:
-        "Mousepad Razer Goliathus Extended Chroma: ofrece un área de juego amplia con iluminación RGB personalizable, asegurando una superficie suave y uniforme para el movimiento del mouse.",
-      reseñas: [
-        { texto: "Colores vibrantes.", estrellas: 5 },
-        { texto: "Muy espacioso.", estrellas: 4 },
-      ],
-    },
-    {
-      nombre: "Secretlab Titan",
-      precio: 350000,
-      categoria: "sillas-gamers",
-      img: "images/secretlab-titan.jpg",
-      descripcion: "Silla gamer premium y ergonómica.",
-      descripcionLarga:
-        "Silla Gamer Secretlab Titan: diseñada para el máximo confort, esta silla ofrece un soporte ergonómico y personalización ajustable para sesiones de juego prolongadas.",
-      reseñas: [
-        { texto: "La mejor silla que he tenido.", estrellas: 5 },
-        { texto: "Muy ergonómica.", estrellas: 5 },
-      ],
-    },
-    {
-      nombre: "Xbox Controller",
-      precio: 55000,
-      categoria: "accesorios",
-      img: "images/xbox-controller.jpg",
-      descripcion: "Control inalámbrico para Xbox y PC.",
-      descripcionLarga:
-        "Controlador Inalámbrico Xbox Series X: ofrece una experiencia de juego cómoda con botones mapeables y una respuesta táctil mejorada. Compatible con consolas Xbox y PC.",
-      reseñas: [
-        { texto: "Excelente respuesta.", estrellas: 5 },
-        { texto: "Muy cómodo en las manos.", estrellas: 4 },
-      ],
-    },
-    {
-      nombre: "Soporte Técnico",
-      precio: 0,
-      categoria: "servicio-tecnico",
-      img: "images/servicio-tecnico.jpg",
-      descripcion: "Chatea con nuestro soporte por WhatsApp.",
-      descripcionLarga:
-        "¿Tienes problemas con tu producto? Haz clic en el botón para chatear con nuestro soporte técnico por WhatsApp.",
-      reseñas: [
-        {
-          texto: "Me ayudaron rápido y resolvieron mi problema.",
-          estrellas: 5,
-        },
-      ],
-      soporte: true,
-    },
-  ];
+  // ====== CONFIG: URL del backend ======
+  // Para desarrollo local:
+  const API_URL = "http://localhost:8080/api/v1/productos";
+
+  // ====== ESTADO PRINCIPAL ======
+  const [productos, setProductos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [errorCarga, setErrorCarga] = useState(null);
 
   // descuento por correo duoc (como antes)
   const currentUser = (() => {
@@ -178,7 +31,6 @@ export default function Productos() {
   })();
   const descuento = currentUser.discount || 0;
 
-  // ----- STATE -----
   const [categoria, setCategoria] = useState("todos");
   const [orden, setOrden] = useState("default");
 
@@ -186,7 +38,6 @@ export default function Productos() {
   const [carrito, setCarrito] = useState([]);
   const [total, setTotal] = useState(0);
 
-  // puntos LevelUp (se ganan al pagar)
   const [puntosLevelUp, setPuntosLevelUp] = useState(() => {
     const saved = parseInt(localStorage.getItem("puntosLevelUp"));
     return isNaN(saved) ? 0 : saved;
@@ -204,22 +55,42 @@ export default function Productos() {
   // mensaje de post-pago
   const [mensajePago, setMensajePago] = useState("");
 
-  // ----- HELPERS -----
+  // ====== FETCH DE PRODUCTOS DESDE BACKEND ======
+  useEffect(() => {
+    async function cargarProductos() {
+      try {
+        setLoading(true);
+        setErrorCarga(null);
 
-  // Calcula precio con descuento (si user tiene discount)
+        const resp = await fetch(API_URL);
+        if (!resp.ok) {
+          throw new Error(`Error HTTP ${resp.status}`);
+        }
+        const data = await resp.json();
+
+        // data debe ser un array de productos [{id, nombre, descripcion, precio, categoria, imagenUrl, stock}, ...]
+        setProductos(data);
+      } catch (err) {
+        console.error("Error cargando productos:", err);
+        setErrorCarga(
+          "No se pudieron cargar los productos desde el servidor. Intenta nuevamente más tarde."
+        );
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    cargarProductos();
+  }, []);
+
+  // ====== HELPERS ======
+
   function precioConDescuento(p) {
-    if (!descuento || p.soporte) {
+    if (!descuento) {
       return { final: p.precio, original: null };
     }
     const final = Math.round(p.precio * (1 - descuento / 100));
     return { final, original: p.precio };
-  }
-
-  // Estrellas promedio para card
-  function promedioEstrellas(p) {
-    if (!p.reseñas || p.reseñas.length === 0) return 0;
-    const total = p.reseñas.reduce((acc, r) => acc + r.estrellas, 0);
-    return Math.round(total / p.reseñas.length);
   }
 
   function estrellasTexto(n) {
@@ -230,8 +101,7 @@ export default function Productos() {
     return out;
   }
 
-  // ---- RESEÑAS guardadas por usuario (localStorage) ----
-
+  // No hay reseñas en la BD todavía → solo extras por localStorage
   function getResenasExtra(nombreProducto) {
     try {
       return (
@@ -248,23 +118,25 @@ export default function Productos() {
     localStorage.setItem("reseñas_" + nombreProducto, JSON.stringify(nuevas));
   }
 
-  // crear lista de reseñas combinando las originales + las extras guardadas
   function reseñasCompletas(producto) {
     if (!producto) return [];
-    const base = producto.reseñas || [];
-    const extra = getResenasExtra(producto.nombre).map((r) => {
-      // las extras las guardamos como {texto, estrellas}
-      return {
-        texto: r.texto,
-        estrellas: r.estrellas,
-      };
-    });
-    return [...base, ...extra];
+    const extra = getResenasExtra(producto.nombre).map((r) => ({
+      texto: r.texto,
+      estrellas: r.estrellas,
+    }));
+    return extra; // por ahora solo extras
   }
 
-  // ----- FILTRAR Y ORDENAR PRODUCTOS -----
+  function promedioEstrellas(producto) {
+    const lista = reseñasCompletas(producto);
+    if (lista.length === 0) return 0;
+    const totalEst = lista.reduce((acc, r) => acc + r.estrellas, 0);
+    return Math.round(totalEst / lista.length);
+  }
+
+  // ====== FILTRADO Y ORDEN ======
   const productosFiltradosYOrdenados = useMemo(() => {
-    let lista = productosBase.filter(
+    let lista = productos.filter(
       (p) => categoria === "todos" || p.categoria === categoria
     );
 
@@ -279,11 +151,9 @@ export default function Productos() {
     }
 
     return lista;
-  }, [categoria, orden, productosBase]);
+  }, [productos, categoria, orden]);
 
-  // ----- CARRITO -----
-
-  // actualizar total cuando cambia carrito
+  // ====== CARRITO ======
   useEffect(() => {
     const nuevoTotal = carrito.reduce(
       (acc, item) => acc + item.precio * item.cantidad,
@@ -315,8 +185,8 @@ export default function Productos() {
       }
     });
 
-    setMensajePago(""); // limpiar mensaje anterior
-    alert(`Agregaste ${producto.nombre} por $${final} al carrito.`);
+    setMensajePago("");
+    alert(`Agregaste ${producto.nombre} por $${final.toLocaleString("es-CL")} al carrito.`);
   }
 
   function eliminarDelCarrito(nombre) {
@@ -333,29 +203,24 @@ export default function Productos() {
   }
 
   function realizarPago() {
-    // puntos = total * 0.001 redondeado hacia abajo
     const puntosGanados = Math.floor(total * 0.001);
     const nuevosPuntosTotales = puntosLevelUp + puntosGanados;
 
-    // guardar puntos en localStorage y estado
     setPuntosLevelUp(nuevosPuntosTotales);
     localStorage.setItem("puntosLevelUp", nuevosPuntosTotales.toString());
 
-    // limpiar carrito
     setCarrito([]);
 
-    // mensaje de confirmación
     setMensajePago(
-      `¡Compra realizada correctamente! Recibirás una boleta en tu correo electrónico. ` +
-        `Has ganado ${puntosGanados} puntos Level-Up. ` +
+      `¡Compra realizada correctamente! Recibirás una boleta en tu correo electrónico.\n` +
+        `Has ganado ${puntosGanados} puntos Level-Up.\n` +
         `Total acumulado: ${nuevosPuntosTotales} puntos Level-Up.`
     );
 
     alert("Compra realizada 🎉 ¡Gracias por tu compra gamer!");
   }
 
-  // ----- MODAL PRODUCTO -----
-
+  // ====== MODAL PRODUCTO ======
   function abrirModalDetalle(producto) {
     setProductoActual(producto);
     setNuevaResenaTexto("");
@@ -389,7 +254,6 @@ export default function Productos() {
       estrellas: nuevaResenaEstrellas,
     });
 
-    // reset form
     setNuevaResenaTexto("");
     setNuevaResenaEstrellas(0);
     setMostrarFormResena(false);
@@ -397,7 +261,6 @@ export default function Productos() {
     alert("¡Gracias por tu reseña!");
   }
 
-  // helper para compartir producto
   function compartir(red) {
     if (!productoActual) return;
 
@@ -424,7 +287,7 @@ export default function Productos() {
     }
   }
 
-  // ----- RENDER -----
+  // ====== RENDER ======
   return (
     <>
       {/* Header catálogo */}
@@ -435,9 +298,21 @@ export default function Productos() {
         </Container>
       </section>
 
-      {/* Filtros */}
+      {/* Filtros + estado de carga */}
       <section className="py-4">
         <Container>
+          {loading && (
+            <Alert variant="info" className="mb-4">
+              Cargando productos desde el servidor...
+            </Alert>
+          )}
+
+          {errorCarga && (
+            <Alert variant="danger" className="mb-4">
+              {errorCarga}
+            </Alert>
+          )}
+
           <Row className="mb-4 align-items-end">
             <Col xs={12} md={4} className="mb-3">
               <Form.Group>
@@ -457,7 +332,6 @@ export default function Productos() {
                   <option value="poleras-personalizadas">
                     Poleras Personalizadas
                   </option>
-                  <option value="servicio-tecnico">Soporte Técnico</option>
                 </Form.Select>
               </Form.Group>
             </Col>
@@ -494,74 +368,62 @@ export default function Productos() {
 
           {/* Productos */}
           <Row className="g-4">
-            {productosFiltradosYOrdenados.map((p, i) => {
-              const { final, original } = precioConDescuento(p);
-              const promEstrellas = promedioEstrellas(p);
+            {!loading &&
+              productosFiltradosYOrdenados.map((p) => {
+                const { final, original } = precioConDescuento(p);
+                const promEstrellas = promedioEstrellas(p);
 
-              return (
-                <Col key={i} xs={12} sm={6} md={4} lg={3}>
-                  <Card
-                    className="h-100 shadow-sm border-0"
-                    style={{ cursor: "pointer" }}
-                    onClick={() => abrirModalDetalle(p)}
-                  >
-                    {!p.soporte && (
-                      <Card.Img
-                        variant="top"
-                        src={p.img}
-                        alt={p.nombre}
-                        style={{
-                          maxHeight: "180px",
-                          objectFit: "cover",
-                        }}
-                      />
-                    )}
+                return (
+                  <Col key={p.id} xs={12} sm={6} md={4} lg={3}>
+                    <Card
+                      className="h-100 shadow-sm border-0"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => abrirModalDetalle(p)}
+                    >
+                      {p.imagenUrl && (
+                        <Card.Img
+                          variant="top"
+                          src={p.imagenUrl}
+                          alt={p.nombre}
+                          style={{
+                            maxHeight: "180px",
+                            objectFit: "cover",
+                          }}
+                        />
+                      )}
 
-                    <Card.Body>
-                      <Card.Title className="h5">{p.nombre}</Card.Title>
+                      <Card.Body>
+                        <Card.Title className="h5">{p.nombre}</Card.Title>
 
-                      {!p.soporte && (
                         <div
                           className="text-warning-emphasis mb-2"
                           style={{ fontSize: "1.1rem", color: "#FFD700" }}
                         >
                           {estrellasTexto(promEstrellas)}
                         </div>
-                      )}
 
-                      <Card.Text>{p.descripcion}</Card.Text>
+                        <Card.Text>{p.descripcion}</Card.Text>
 
-                      {!p.soporte && (
                         <div className="mb-2">
                           {original ? (
                             <>
                               <div className="text-muted text-decoration-line-through">
-                                ${original}
+                                ${original.toLocaleString("es-CL")}
                               </div>
                               <div className="fw-bold">
-                                ${final}{" "}
+                                ${final.toLocaleString("es-CL")}{" "}
                                 <span className="text-success">
                                   (-{descuento}%)
                                 </span>
                               </div>
                             </>
                           ) : (
-                            <div className="fw-bold">${final}</div>
+                            <div className="fw-bold">
+                              ${final.toLocaleString("es-CL")}
+                            </div>
                           )}
                         </div>
-                      )}
 
-                      {p.soporte ? (
-                        <Button
-                          variant="success"
-                          className="w-100 fw-bold"
-                          href="https://wa.me/56949623132?text=Hola,%20necesito%20soporte%20técnico%20con%20mi%20producto%20Level-Up%20Gamer"
-                          target="_blank"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          💬 Chatear con Soporte Técnico
-                        </Button>
-                      ) : (
                         <Button
                           variant="primary"
                           className="w-100 fw-bold"
@@ -572,12 +434,11 @@ export default function Productos() {
                         >
                           Agregar al carrito
                         </Button>
-                      )}
-                    </Card.Body>
-                  </Card>
-                </Col>
-              );
-            })}
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                );
+              })}
           </Row>
         </Container>
       </section>
@@ -599,8 +460,8 @@ export default function Productos() {
                         <div>
                           <strong>{item.nombre}</strong>
                           <br />
-                          ${item.precio} x {item.cantidad} = $
-                          {item.precio * item.cantidad}
+                          ${item.precio.toLocaleString("es-CL")} x {item.cantidad} = $
+                          {(item.precio * item.cantidad).toLocaleString("es-CL")}
                         </div>
 
                         <div className="d-flex flex-column align-items-start gap-2">
@@ -634,11 +495,12 @@ export default function Productos() {
                 </ListGroup>
               )}
 
-              <p className="fw-bold">Total: ${total}</p>
+              <p className="fw-bold">
+                Total: ${total.toLocaleString("es-CL")}
+              </p>
 
               <div className="mb-2">
-                Puntos Level-Up acumulados:{" "}
-                <b>{puntosLevelUp}</b>
+                Puntos Level-Up acumulados: <b>{puntosLevelUp}</b>
               </div>
 
               {carrito.length > 0 && (
@@ -666,7 +528,7 @@ export default function Productos() {
         </Container>
       </section>
 
-      {/* Modal Detalle con Reseñas y Compartir */}
+      {/* Modal Detalle */}
       <Modal show={showModal} onHide={cerrarModalDetalle} centered size="lg">
         {productoActual && (
           <>
@@ -676,10 +538,10 @@ export default function Productos() {
 
             <Modal.Body>
               <Row>
-                {!productoActual.soporte && (
+                {productoActual.imagenUrl && (
                   <Col md={4} className="text-center mb-3">
                     <img
-                      src={productoActual.img}
+                      src={productoActual.imagenUrl}
                       alt={productoActual.nombre}
                       style={{
                         maxWidth: "180px",
@@ -690,8 +552,8 @@ export default function Productos() {
                   </Col>
                 )}
 
-                <Col md={productoActual.soporte ? 12 : 8}>
-                  <p>{productoActual.descripcionLarga}</p>
+                <Col md={productoActual.imagenUrl ? 8 : 12}>
+                  <p>{productoActual.descripcion}</p>
 
                   {/* Reseñas */}
                   <h5 className="mt-4">Reseñas</h5>
@@ -716,119 +578,105 @@ export default function Productos() {
                   )}
 
                   {/* Botón "Dejar reseña" */}
-                  {!productoActual.soporte && (
-                    <>
-                      {!mostrarFormResena ? (
-                        <Button
-                          variant="outline-primary"
-                          className="mb-3"
-                          onClick={() => setMostrarFormResena(true)}
-                        >
-                          Dejar reseña
-                        </Button>
-                      ) : (
-                        <div className="mb-4 p-3 border rounded bg-light">
-                          <h6>Tu reseña</h6>
+                  {!mostrarFormResena ? (
+                    <Button
+                      variant="outline-primary"
+                      className="mb-3"
+                      onClick={() => setMostrarFormResena(true)}
+                    >
+                      Dejar reseña
+                    </Button>
+                  ) : (
+                    <div className="mb-4 p-3 border rounded bg-light">
+                      <h6>Tu reseña</h6>
 
-                          {/* Estrellas clickeables */}
-                          <div
-                            style={{
-                              fontSize: "1.5em",
-                              cursor: "pointer",
-                              userSelect: "none",
-                            }}
-                            className="mb-2"
+                      <div
+                        style={{
+                          fontSize: "1.5em",
+                          cursor: "pointer",
+                          userSelect: "none",
+                        }}
+                        className="mb-2"
+                      >
+                        {[1, 2, 3, 4, 5].map((n) => (
+                          <span
+                            key={n}
+                            onClick={() => seleccionarEstrellas(n)}
                           >
-                            {[1, 2, 3, 4, 5].map((n) => (
-                              <span
-                                key={n}
-                                onClick={() => seleccionarEstrellas(n)}
-                              >
-                                {n <= nuevaResenaEstrellas ? "★" : "☆"}
-                              </span>
-                            ))}
-                          </div>
+                            {n <= nuevaResenaEstrellas ? "★" : "☆"}
+                          </span>
+                        ))}
+                      </div>
 
-                          <Form.Group className="mb-2">
-                            <Form.Control
-                              as="textarea"
-                              rows={2}
-                              maxLength={120}
-                              placeholder="Escribe tu opinión..."
-                              value={nuevaResenaTexto}
-                              onChange={(e) =>
-                                setNuevaResenaTexto(e.target.value)
-                              }
-                            />
-                          </Form.Group>
+                      <Form.Group className="mb-2">
+                        <Form.Control
+                          as="textarea"
+                          rows={2}
+                          maxLength={120}
+                          placeholder="Escribe tu opinión..."
+                          value={nuevaResenaTexto}
+                          onChange={(e) =>
+                            setNuevaResenaTexto(e.target.value)
+                          }
+                        />
+                      </Form.Group>
 
-                          <Button
-                            variant="primary"
-                            size="sm"
-                            className="me-2"
-                            onClick={enviarResena}
-                          >
-                            Enviar reseña
-                          </Button>
+                      <Button
+                        variant="primary"
+                        size="sm"
+                        className="me-2"
+                        onClick={enviarResena}
+                      >
+                        Enviar reseña
+                      </Button>
 
-                          <Button
-                            variant="secondary"
-                            size="sm"
-                            onClick={() => {
-                              setMostrarFormResena(false);
-                              setNuevaResenaTexto("");
-                              setNuevaResenaEstrellas(0);
-                            }}
-                          >
-                            Cancelar
-                          </Button>
-                        </div>
-                      )}
-                    </>
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        onClick={() => {
+                          setMostrarFormResena(false);
+                          setNuevaResenaTexto("");
+                          setNuevaResenaEstrellas(0);
+                        }}
+                      >
+                        Cancelar
+                      </Button>
+                    </div>
                   )}
 
                   {/* Compartir */}
-                  {!productoActual.soporte && (
-                    <>
-                      <h5 className="mt-3">Compartir este producto</h5>
-                      <div className="d-flex flex-wrap gap-2">
-                        <Button
-                          variant="primary"
-                          onClick={() => compartir("facebook")}
-                        >
-                          📘 Facebook
-                        </Button>
-                        <Button
-                          variant="info"
-                          onClick={() => compartir("twitter")}
-                        >
-                          🐦 Twitter
-                        </Button>
-                        <Button
-                          variant="success"
-                          onClick={() => compartir("whatsapp")}
-                        >
-                          💬 WhatsApp
-                        </Button>
-                      </div>
-                    </>
-                  )}
+                  <h5 className="mt-3">Compartir este producto</h5>
+                  <div className="d-flex flex-wrap gap-2">
+                    <Button
+                      variant="primary"
+                      onClick={() => compartir("facebook")}
+                    >
+                      📘 Facebook
+                    </Button>
+                    <Button variant="info" onClick={() => compartir("twitter")}>
+                      🐦 Twitter
+                    </Button>
+                    <Button
+                      variant="success"
+                      onClick={() => compartir("whatsapp")}
+                    >
+                      💬 WhatsApp
+                    </Button>
+                  </div>
                 </Col>
               </Row>
             </Modal.Body>
 
             <Modal.Footer>
-              {!productoActual.soporte && (
-                <Button
-                  variant="primary"
-                  onClick={() => {
-                    agregarAlCarrito(productoActual);
-                    cerrarModalDetalle();
-                  }}
-                >
-                  Agregar al carrito
-                </Button>
-              )}
+              <Button
+                variant="primary"
+                onClick={() => {
+                  agregarAlCarrito(productoActual);
+                  cerrarModalDetalle();
+                }}
+              >
+                Agregar al carrito
+              </Button>
               <Button variant="secondary" onClick={cerrarModalDetalle}>
                 Cerrar
               </Button>
@@ -836,8 +684,6 @@ export default function Productos() {
           </>
         )}
       </Modal>
-
-    
     </>
   );
 }
