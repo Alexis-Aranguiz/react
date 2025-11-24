@@ -10,6 +10,7 @@ export default function Footer() {
         padding: "15px 0",
         width: "100%",
         marginTop: "2rem",
+        position: "static", // evita que quede pegado encima del contenido
       }}
     >
       <p className="mb-0">

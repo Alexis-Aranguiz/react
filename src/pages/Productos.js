@@ -1,3 +1,4 @@
+// src/pages/Productos.js
 import React, { useState, useMemo, useEffect } from "react";
 import {
   Container,
@@ -11,9 +12,23 @@ import {
   Alert,
 } from "react-bootstrap";
 
+// ========== DICCIONARIO DE IMÁGENES POR NOMBRE DE PRODUCTO ==========
+const PRODUCT_IMAGES = {
+  "Asus ROG Strix": "/images/asus-rog-strix.jpg",
+  Carcassonne: "/images/carcassonne.png",
+  Catan: "/images/catan.png",
+  "HyperX Cloud II": "/images/hyperx-cloud2.jpg",
+  "Logitech G502": "/images/logitech-g502.jpg",
+  "Polera Gamer Personalizada": "/images/polera-personalizada.png",
+  "Razer Goliathus Extended": "/images/razer-goliathus.jpg",
+  "Secretlab Titan": "/images/secretlab-titan.jpg",
+  "Xbox Controller": "/images/xbox-controller.jpg",
+  "PlayStation 5": "/images/ps5.jpg",
+  "Servicio Técnico": "/images/servicio-tecnico.jpg",
+};
+
 export default function Productos() {
   // ====== CONFIG: URL del backend ======
-  // Para desarrollo local:
   const API_URL = "http://localhost:8080/api/v1/productos";
 
   // ====== ESTADO PRINCIPAL ======
@@ -21,7 +36,6 @@ export default function Productos() {
   const [loading, setLoading] = useState(true);
   const [errorCarga, setErrorCarga] = useState(null);
 
-  // descuento por correo duoc (como antes)
   const currentUser = (() => {
     try {
       return JSON.parse(localStorage.getItem("currentUser")) || {};
@@ -34,7 +48,6 @@ export default function Productos() {
   const [categoria, setCategoria] = useState("todos");
   const [orden, setOrden] = useState("default");
 
-  // carrito = [{ nombre, precio, cantidad }]
   const [carrito, setCarrito] = useState([]);
   const [total, setTotal] = useState(0);
 
@@ -43,16 +56,13 @@ export default function Productos() {
     return isNaN(saved) ? 0 : saved;
   });
 
-  // modal producto
   const [showModal, setShowModal] = useState(false);
   const [productoActual, setProductoActual] = useState(null);
 
-  // reseña nueva en modal
   const [nuevaResenaTexto, setNuevaResenaTexto] = useState("");
   const [nuevaResenaEstrellas, setNuevaResenaEstrellas] = useState(0);
   const [mostrarFormResena, setMostrarFormResena] = useState(false);
 
-  // mensaje de post-pago
   const [mensajePago, setMensajePago] = useState("");
 
   // ====== FETCH DE PRODUCTOS DESDE BACKEND ======
@@ -67,8 +77,6 @@ export default function Productos() {
           throw new Error(`Error HTTP ${resp.status}`);
         }
         const data = await resp.json();
-
-        // data debe ser un array de productos [{id, nombre, descripcion, precio, categoria, imagenUrl, stock}, ...]
         setProductos(data);
       } catch (err) {
         console.error("Error cargando productos:", err);
@@ -84,7 +92,6 @@ export default function Productos() {
   }, []);
 
   // ====== HELPERS ======
-
   function precioConDescuento(p) {
     if (!descuento) {
       return { final: p.precio, original: null };
@@ -101,7 +108,6 @@ export default function Productos() {
     return out;
   }
 
-  // No hay reseñas en la BD todavía → solo extras por localStorage
   function getResenasExtra(nombreProducto) {
     try {
       return (
@@ -124,7 +130,7 @@ export default function Productos() {
       texto: r.texto,
       estrellas: r.estrellas,
     }));
-    return extra; // por ahora solo extras
+    return extra;
   }
 
   function promedioEstrellas(producto) {
@@ -186,7 +192,11 @@ export default function Productos() {
     });
 
     setMensajePago("");
-    alert(`Agregaste ${producto.nombre} por $${final.toLocaleString("es-CL")} al carrito.`);
+    alert(
+      `Agregaste ${producto.nombre} por $${final.toLocaleString(
+        "es-CL"
+      )} al carrito.`
+    );
   }
 
   function eliminarDelCarrito(nombre) {
@@ -294,7 +304,9 @@ export default function Productos() {
       <section className="py-5 bg-dark text-light text-center">
         <Container>
           <h1 className="display-5 fw-bold">Catálogo de Productos</h1>
-          <p className="lead">Todo lo que necesitas para tu setup gamer en Chile.</p>
+          <p className="lead">
+            Todo lo que necesitas para tu setup gamer en Chile.
+          </p>
         </Container>
       </section>
 
@@ -324,7 +336,9 @@ export default function Productos() {
                   <option value="todos">Todos</option>
                   <option value="consolas">Consolas</option>
                   <option value="accesorios">Accesorios</option>
-                  <option value="computadores-gamers">Computadores Gamers</option>
+                  <option value="computadores-gamers">
+                    Computadores Gamers
+                  </option>
                   <option value="sillas-gamers">Sillas Gamers</option>
                   <option value="juegos-de-mesa">Juegos de mesa</option>
                   <option value="mouse">Mouse</option>
@@ -372,6 +386,7 @@ export default function Productos() {
               productosFiltradosYOrdenados.map((p) => {
                 const { final, original } = precioConDescuento(p);
                 const promEstrellas = promedioEstrellas(p);
+                const imageSrc = PRODUCT_IMAGES[p.nombre];
 
                 return (
                   <Col key={p.id} xs={12} sm={6} md={4} lg={3}>
@@ -380,10 +395,10 @@ export default function Productos() {
                       style={{ cursor: "pointer" }}
                       onClick={() => abrirModalDetalle(p)}
                     >
-                      {p.imagenUrl && (
+                      {imageSrc && (
                         <Card.Img
                           variant="top"
-                          src={p.imagenUrl}
+                          src={imageSrc}
                           alt={p.nombre}
                           style={{
                             maxHeight: "180px",
@@ -460,8 +475,11 @@ export default function Productos() {
                         <div>
                           <strong>{item.nombre}</strong>
                           <br />
-                          ${item.precio.toLocaleString("es-CL")} x {item.cantidad} = $
-                          {(item.precio * item.cantidad).toLocaleString("es-CL")}
+                          ${item.precio.toLocaleString("es-CL")} x{" "}
+                          {item.cantidad} = $
+                          {(item.precio * item.cantidad).toLocaleString(
+                            "es-CL"
+                          )}
                         </div>
 
                         <div className="d-flex flex-column align-items-start gap-2">
@@ -473,10 +491,7 @@ export default function Productos() {
                               style={{ width: "60px" }}
                               value={item.cantidad}
                               onChange={(e) =>
-                                modificarCantidad(
-                                  item.nombre,
-                                  e.target.value
-                                )
+                                modificarCantidad(item.nombre, e.target.value)
                               }
                             />
                           </div>
@@ -538,21 +553,30 @@ export default function Productos() {
 
             <Modal.Body>
               <Row>
-                {productoActual.imagenUrl && (
-                  <Col md={4} className="text-center mb-3">
-                    <img
-                      src={productoActual.imagenUrl}
-                      alt={productoActual.nombre}
-                      style={{
-                        maxWidth: "180px",
-                        borderRadius: "8px",
-                        objectFit: "cover",
-                      }}
-                    />
-                  </Col>
-                )}
+                {(() => {
+                  const imageSrc =
+                    PRODUCT_IMAGES[productoActual.nombre] || null;
+                  if (!imageSrc) return null;
+                  return (
+                    <Col md={4} className="text-center mb-3">
+                      <img
+                        src={imageSrc}
+                        alt={productoActual.nombre}
+                        style={{
+                          maxWidth: "180px",
+                          borderRadius: "8px",
+                          objectFit: "cover",
+                        }}
+                      />
+                    </Col>
+                  );
+                })()}
 
-                <Col md={productoActual.imagenUrl ? 8 : 12}>
+                <Col
+                  md={
+                    PRODUCT_IMAGES[productoActual.nombre] ? 8 : 12
+                  }
+                >
                   <p>{productoActual.descripcion}</p>
 
                   {/* Reseñas */}
@@ -653,7 +677,10 @@ export default function Productos() {
                     >
                       📘 Facebook
                     </Button>
-                    <Button variant="info" onClick={() => compartir("twitter")}>
+                    <Button
+                      variant="info"
+                      onClick={() => compartir("twitter")}
+                    >
                       🐦 Twitter
                     </Button>
                     <Button
